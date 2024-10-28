@@ -1,75 +1,75 @@
-# Nuxt Minimal Starter
+# Nuxt FakerJS Seeder Project
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This repository contains a Nuxt.js project designed to teach users how to utilize FakerJS for data seeding in a SQLite database.
 
-## Setup
+## Features
 
-Make sure to install dependencies:
+- **FakerJS Integration**: Learn how to generate fake data using FakerJS.
+- **Nitro Tasks**: Leverage Nitro Tasks UI within the Nuxt DevTools, to run the seeder in the server.
+- **Nuxt Prisma Module**: Setup prisma for database interactions, and use Nuxt DevTools to visualise your Prisma models.
+
+## Getting Started
+
+To get started with this project, follow the steps below:
+
+1. **Install dependencies**
 
 ```bash
-# npm
-npm install
-
 # pnpm
 pnpm install
 
-# yarn
-yarn install
-
-# bun
-bun install
+# npm
+npm install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+2. **Setup the environment file**
 
 ```bash
-# npm
-npm run dev
+cp .env.example .env
+```
 
+3. **Initialize your database** 
+
+```bash
+pnpx prisma migrate dev
+```
+
+4. **Run the development server**
+
+```bash
 # pnpm
 pnpm dev
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
 # npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npm run dev
 ```
 
-Locally preview production build:
+5. **Access the Application**:
 
-```bash
-# npm
-npm run preview
+Open your browser and go to http://localhost:3000 to access the application.
 
-# pnpm
-pnpm preview
+6. **Opening the Server Tasks and Prisma Dashboards**:
 
-# yarn
-yarn preview
+First open the Nuxt DevTools by clicking on the Nuxt icon at the bottom of the page:
 
-# bun
-bun run preview
-```
+   <img width="587" alt="image" src="https://github.com/user-attachments/assets/3d55875a-f1b9-43b2-9d98-9287d9749ba5">
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Then from within the DevTools, click on the 3 vertical dots:
+
+   <img width="849" alt="image" src="https://github.com/user-attachments/assets/7b4ac920-3ef6-4320-963d-28b5bea05095">
+
+The Server Tasks and Prisma Dashboards are available upon pressing these buttons:
+
+   <img width="351" alt="image" src="https://github.com/user-attachments/assets/ce3691d8-a297-4adb-8461-c75a66e4a103">
+
+7. **Running just the Seeder**:
+
+* Within the Server Tasks dashboard click on "db:seed"
+* Press "Run Task"
+* By default the runner used is "pnpx", if you want to use a different runner (e.g. `npx`), you can do so by passing a `runner` payload to the task.
+
+<img width="1231" alt="image" src="https://github.com/user-attachments/assets/5c71e001-3622-4d48-ba90-b80b3dacf7f2">
+
+
+
+
