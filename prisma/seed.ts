@@ -1,44 +1,30 @@
 import prisma from "~/lib/prisma";
+import { faker } from "@faker-js/faker";
 
 async function main() {
-  const alice = await prisma.user.upsert({
-    where: { email: "alice@prisma.io" },
-    update: {},
-    create: {
-      email: "alice@prisma.io",
-      name: "Alice",
-      posts: {
-        create: {
-          title: "Check out Prisma with Next.js",
-          content: "https://www.prisma.io/nextjs",
-          published: true,
-        },
-      },
-    },
-  });
-  const bob = await prisma.user.upsert({
-    where: { email: "bob@prisma.io" },
-    update: {},
-    create: {
-      email: "bob@prisma.io",
-      name: "Bob",
-      posts: {
-        create: [
-          {
-            title: "Follow Prisma on Twitter",
-            content: "https://twitter.com/prisma",
-            published: true,
-          },
-          {
-            title: "Follow Nexus on Twitter",
-            content: "https://twitter.com/nexusgql",
-            published: true,
-          },
-        ],
-      },
-    },
-  });
-  console.log({ alice, bob });
+  await prisma.post.deleteMany();
+  await prisma.user.deleteMany();
+
+  const NAME_DIVIDER = "|||";
+
+  function fullNamePairing(): string {
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
+
+    return firstName + NAME_DIVIDER + lastName;
+  }
+
+  const newUserData = faker.helpers
+    .uniqueArray(fullNamePairing, 100)
+    .map((namePairing: string) => {
+      const [firstName, lastName] = namePairing.split(NAME_DIVIDER);
+      return {
+        email: faker.internet.email({ firstName, lastName }),
+        name: faker.person.fullName({ firstName, lastName }),
+      };
+    });
+
+  await prisma.user.createMany({ data: newUserData });
 }
 
 main()

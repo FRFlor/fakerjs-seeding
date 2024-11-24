@@ -19,6 +19,9 @@ dependencies:
     version: 4.4.5(vue@3.5.13)
 
 devDependencies:
+  '@faker-js/faker':
+    specifier: ^9.2.0
+    version: 9.2.0
   '@prisma/client':
     specifier: ^5.22.0
     version: 5.22.0
@@ -989,6 +992,11 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@faker-js/faker@9.2.0:
+    resolution: {integrity: sha512-ulqQu4KMr1/sTFIYvqSdegHT8NIkt66tFAkugGnHA+1WAfEn6hMzNR+svjXGFRVLnapxvej67Z/LwchFrnLBUg==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0'}
+    dev: true
 
   /@ioredis/commands@1.2.0:
     resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
