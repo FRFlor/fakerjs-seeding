@@ -25,6 +25,25 @@ async function main() {
     });
 
   await prisma.user.createMany({ data: newUserData });
+
+  const existingUsers = await prisma.user.findMany({ select: { id: true } });
+
+  const authorIds: number[] = [];
+  for (const user of existingUsers) {
+    const numberOfPosts = faker.number.int({ min: 0, max: 30 });
+    for (let i = 0; i < numberOfPosts; i++) {
+      authorIds.push(user.id);
+    }
+  }
+
+  const newPostsData = authorIds.map((id) => ({
+    authorId: id,
+    title: faker.hacker.noun(),
+    content: faker.hacker.phrase(),
+    published: faker.datatype.boolean({ probability: 0.75 }),
+  }));
+
+  await prisma.post.createMany({ data: newPostsData });
 }
 
 main()
